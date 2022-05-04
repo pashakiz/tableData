@@ -1,0 +1,12 @@
+.footer {
+  text-align: center;
+  padding: 10px;
+}
+
+.footer_lnk {
+  color: $color_footer;
+  &:hover {
+    color: $color_footer;
+    opacity: 0.8;
+  }
+}

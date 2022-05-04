@@ -1,0 +1,99 @@
+.app-table {
+  margin: 50px 0;
+  padding: 23px 0 12px 0;
+  -webkit-box-shadow: 0px 4px 27px 0px rgba(230, 231, 234, 0.78);
+  -moz-box-shadow:    0px 4px 27px 0px rgba(230, 231, 234, 0.78);
+  box-shadow:         0px 4px 27px 0px rgba(230, 231, 234, 0.78);
+}
+
+.search-bar {
+  margin: 0 0 15px;
+}
+.search {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: $color_dark;
+}
+.search__input {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: $color_light;
+  padding: 15px 0 15px 26px;
+  flex-grow: 1;
+  &::placeholder {
+    color: $color_dark2;
+  }
+}
+.search__icon {
+  color: $color_light;
+  padding: 15px 17px;
+  cursor: pointer;
+  &:hover {
+    color: $color_dark2;
+  }
+}
+
+.table {
+  width: 100%;
+  max-width: 1077px;
+  margin-bottom: 16px;
+  table {
+    width: 100%;
+    thead {
+      tr {
+        padding: 0;
+        border-bottom: 1px solid $color_dark;
+        th.table__th {
+          background-color: $color_dark;
+          color: $color_light;
+          padding: 19px 23px 16px;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          border-left: 1px solid $color_dark;
+          border-right: 1px solid $color_dark;
+          &:hover {
+            color: $color_dark2;
+          }
+          .table__th-icon {
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid $color_light2;
+        td {
+          border: none;
+          border-left: 1px solid $color_light2;
+          border-right: 1px solid $color_light2;
+          padding: 15px 10px;
+          vertical-align: middle;
+          font-weight: 500;
+          font-size: 13px;
+          &:first-child {
+            text-align: center;
+            width: 11%;
+          }
+          &:last-child {
+            width: 41%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination {}
+
+.bi {
+  .bi-search {}
+}

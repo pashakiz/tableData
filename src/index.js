@@ -9,9 +9,6 @@ import App from './components/App';
 
 //const store = createStore(allRedusers, { appActive: {tab: globalConst.START_ACTIVE_TAB, examMode: globalConst.START_ACTIVE_EXAMODE} });
 
-const foo = bar => console.log('some...', bar);
-foo('bar');
-
 ReactDOM.render(
   <App />,
   document.getElementById('app')
