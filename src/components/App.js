@@ -45,9 +45,9 @@ class App extends React.Component {
     return (
       <div className="app-table">
         <div className="row">
-          <div className="col-10 offset-1">
+          <div className="col col-lg-10 offset-lg-1">
             <div className="row">
-              <div className="col-7">
+              <div className="col col-lg-7">
                 <Search/>
               </div>
             </div>

@@ -1,9 +1,12 @@
 .app-table {
   margin: 50px 0;
-  padding: 23px 0 12px 0;
+  padding: 0 0 15px 0;
   -webkit-box-shadow: 0px 4px 27px 0px rgba(230, 231, 234, 0.78);
   -moz-box-shadow:    0px 4px 27px 0px rgba(230, 231, 234, 0.78);
   box-shadow:         0px 4px 27px 0px rgba(230, 231, 234, 0.78);
+  @media (min-width: 992px) {
+    padding: 23px 0 12px 0;
+  }
 }
 
 .search-bar {
@@ -50,17 +53,32 @@
         th.table__th {
           background-color: $color_dark;
           color: $color_light;
-          padding: 19px 23px 16px;
-          font-size: 14px;
+          padding: 5px;
+          font-size: 12px;
           font-weight: 500;
           cursor: pointer;
           border-left: 1px solid $color_dark;
           border-right: 1px solid $color_dark;
+          @media (min-width: 992px) {
+            font-size: 14px;
+            padding: 19px 23px 16px;
+          }
           &:hover {
             color: $color_dark2;
           }
           .table__th-icon {
-            margin-left: 30px;
+            margin-left: 5px;
+            @media (min-width: 992px) {
+              margin-left: 30px;
+            }
+            svg {
+              width: 8px;
+              height: 8px;
+              @media (min-width: 992px) {
+                width: 16px;
+                height: 16px;
+              }
+            }
           }
         }
       }
@@ -79,6 +97,9 @@
           vertical-align: middle;
           font-weight: 500;
           font-size: 13px;
+          @media (min-width: 992px) {
+            font-size: 13px;
+          }
           &:first-child {
             text-align: center;
             width: 11%;
@@ -100,14 +121,18 @@
 }
 
 .pagination__btn {
-  padding: 0 30px;
+  padding: 0 10px;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 13px;
   color: $color_dark;
   cursor: pointer;
   background: none;
   border: none;
   outline: none;
+  @media (min-width: 992px) {
+    padding: 0 30px;
+    font-size: 24px;
+  }
   &:hover {
     color: $color_dark;
     opacity: 0.8;
@@ -121,12 +146,15 @@
   cursor: pointer;
   font-weight: 700;
   font-style: italic;
-  font-size: 18px;
+  font-size: 12px;
   color: $color_dark;
   background: none;
   border: none;
   outline: none;
   padding: 0 5px;
+  @media (min-width: 992px) {
+    font-size: 18px;
+  }
   &:hover {
     color: $color_dark;
     opacity: 0.8;
