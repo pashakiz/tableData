@@ -36,7 +36,11 @@ class Table extends React.Component {
               </th>
             </tr>
           </thead>
-          <TableBody posts={this.props.posts}/>
+          <TableBody
+            posts={this.props.posts}
+            itemsPerPage = {this.props.itemsPerPage}
+            pageNum = {this.props.pageNum}
+          />
         </table>
       </div>
     );

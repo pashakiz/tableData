@@ -9,10 +9,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        posts: [],
-        dataIsLoaded: false,
-        pageNum: window.location.hash ? +window.location.hash.split('#')[1].split('page')[1] : 1,
-        pageAll: null
+      itemsPerPage: 10,
+      posts: [],
+      dataIsLoaded: false,
+      pageNum: window.location.hash ? +window.location.hash.split('#')[1].split('page')[1] : 1,
+      pageAll: null
     };
   }
 
@@ -23,7 +24,7 @@ class App extends React.Component {
       this.setState({
         dataIsLoaded: true,
         posts: json,
-        pageAll: json.length / 10 //10 items per page
+        pageAll: json.length / this.state.itemsPerPage
       });
     });
   }
@@ -50,11 +51,17 @@ class App extends React.Component {
                 <Search/>
               </div>
             </div>
-            <Table posts={this.state.posts}/>
-            <Pagination urlParam={this.state.urlParam}
-                        pageNum={this.state.pageNum}
-                        pageAll={this.state.pageAll}
-                        handleClickPage = {this.handleClickPage}/>
+            <Table
+              posts = {this.state.posts}
+              itemsPerPage = {this.state.itemsPerPage}
+              pageNum = {this.state.pageNum}
+            />
+            <Pagination
+              urlParam = {this.state.urlParam}
+              pageNum = {this.state.pageNum}
+              pageAll = {this.state.pageAll}
+              handleClickPage = {this.handleClickPage}
+            />
           </div>
         </div>
       </div>
