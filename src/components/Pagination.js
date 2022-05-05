@@ -12,7 +12,9 @@ class Pagination extends React.Component {
     let paginationPages = [];
     for (let i=1; i <= this.props.pageAll; i++) {
       paginationPages.push(
-        <button key={i} onClick={()=>this.props.handleClickPage(i)} className="pagination__page">{i}</button>
+        <button key={i} onClick={()=>this.props.handleClickPage(i)} className={classNames('pagination__page',
+          {active: (i === this.props.pageNum)}
+        )}>{i}</button>
       );
     }
 

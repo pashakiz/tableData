@@ -51,7 +51,6 @@ class App extends React.Component {
               </div>
             </div>
             <Table posts={this.state.posts}/>
-            this page num: {this.state.pageNum}
             <Pagination urlParam={this.state.urlParam}
                         pageNum={this.state.pageNum}
                         pageAll={this.state.pageAll}
