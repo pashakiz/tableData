@@ -98,16 +98,14 @@ class App extends React.Component {
   }
 
   handleChangeSearch = (event) => {
+    let searh = event.target.value.toLowerCase();
+
     this.setState({
-      searchField: event.target.value,
-      postFiltered: this.state.posts.filter(row => row.title.includes(event.target.value))
+      searchField: searh,
+      postFiltered: this.state.posts.filter(row => row.id.toString().includes(searh)
+                                                || row.title.toLowerCase().includes(searh)
+                                                || row.body.toLowerCase().includes(searh))
     });
-
-    console.log('filter:', this.state.posts.filter(row => row.title.includes(event.target.value)));
-  }
-
-  handleClickSearch = (event) => {
-    console.log('event.target', event.target);
   }
 
   componentDidMount() {
@@ -124,7 +122,6 @@ class App extends React.Component {
               <div className="col col-lg-7">
                 <Search searchField={this.state.searchField}
                         handleChangeSearch = {this.handleChangeSearch}
-                        handleClickSearch = {this.handleClickSearch}
                 />
               </div>
             </div>
