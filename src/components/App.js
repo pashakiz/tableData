@@ -41,27 +41,47 @@ class App extends React.Component {
 
   handleClickSort = (event, column) => {
 
+    let dataSorted = [];
+    let dataUnSorted = [];
+
+    if (this.state.searchField !== '') {
+      dataUnSorted = this.state.postFiltered;
+    } else {
+      dataUnSorted = this.state.posts;
+    }
+    console.log('dataUnSorted',dataUnSorted)
+
     if (event.target.classList.contains('down')) {
       console.log('sort:down>up');
 
       if (column === 'id') {
+        dataSorted = dataUnSorted.sort( (a, b) => b.id - a.id );
         this.setState({
-          tableIconId: 'up',
-          posts: this.state.posts.sort( (a, b) => b.id - a.id )
+          tableIconId: 'up'
         })
       }
 
       if (column === 'title') {
+        dataSorted = dataUnSorted.sort( (a, b) => b[column].localeCompare(a[column]) );
         this.setState({
-          tableIconTitle: 'up',
-          posts: this.state.posts.sort( (a, b) => b[column].localeCompare(a[column]) )
+          tableIconTitle: 'up'
         })
       }
 
       if (column === 'body') {
+        dataSorted = dataUnSorted.sort( (a, b) => b[column].localeCompare(a[column]) );
         this.setState({
-          tableIconBody: 'up',
-          posts: this.state.posts.sort( (a, b) => b[column].localeCompare(a[column]) )
+          tableIconBody: 'up'
+        })
+      }
+
+      if (this.state.searchField !== '') {
+        this.setState({
+          postFiltered: dataSorted
+        })
+      } else {
+        this.setState({
+          posts: dataSorted
         })
       }
 
@@ -72,23 +92,33 @@ class App extends React.Component {
       console.log('sort:up>down');
 
       if (column === 'id') {
+        dataSorted = dataUnSorted.sort( (a, b) => a.id - b.id );
         this.setState({
-          tableIconId: 'down',
-          posts: this.state.posts.sort( (a, b) => a.id - b.id )
+          tableIconId: 'down'
         })
       }
 
       if (column === 'title') {
+        dataSorted = dataUnSorted.sort( (a, b) => a[column].localeCompare(b[column]) );
         this.setState({
-          tableIconTitle: 'down',
-          posts: this.state.posts.sort( (a, b) => a[column].localeCompare(b[column]) )
+          tableIconTitle: 'down'
         })
       }
 
       if (column === 'body') {
+        dataSorted = dataUnSorted.sort( (a, b) => a[column].localeCompare(b[column]) );
         this.setState({
-          tableIconBody: 'down',
-          posts: this.state.posts.sort( (a, b) => a[column].localeCompare(b[column]) )
+          tableIconBody: 'down'
+        })
+      }
+
+      if (this.state.searchField !== '') {
+        this.setState({
+          postFiltered: dataSorted
+        })
+      } else {
+        this.setState({
+          posts: dataSorted
         })
       }
 
