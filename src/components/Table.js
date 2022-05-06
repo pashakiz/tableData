@@ -69,6 +69,8 @@ class Table extends React.Component {
             posts={this.props.posts}
             itemsPerPage = {this.props.itemsPerPage}
             pageNum = {this.props.pageNum}
+            searchField = {this.props.searchField}
+            postFiltered = {this.props.postFiltered}
           />
         </table>
       </div>

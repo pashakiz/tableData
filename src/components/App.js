@@ -13,10 +13,11 @@ class App extends React.Component {
       posts: [],
       dataIsLoaded: false,
       pageNum: window.location.hash ? +window.location.hash.split('#')[1].split('page')[1] : 1,
-      pageAll: null,
       tableIconId: 'down',
       tableIconTitle: 'down',
       tableIconBody: 'down',
+      searchField: '',
+      postFiltered: [],
     };
   }
 
@@ -27,7 +28,6 @@ class App extends React.Component {
       this.setState({
         dataIsLoaded: true,
         posts: json,
-        pageAll: json.length / this.state.itemsPerPage
       });
     });
   }
@@ -97,6 +97,19 @@ class App extends React.Component {
 
   }
 
+  handleChangeSearch = (event) => {
+    this.setState({
+      searchField: event.target.value,
+      postFiltered: this.state.posts.filter(row => row.title.includes(event.target.value))
+    });
+
+    console.log('filter:', this.state.posts.filter(row => row.title.includes(event.target.value)));
+  }
+
+  handleClickSearch = (event) => {
+    console.log('event.target', event.target);
+  }
+
   componentDidMount() {
     const url = 'https://jsonplaceholder.typicode.com/posts';
     this.getData(url);
@@ -109,23 +122,31 @@ class App extends React.Component {
           <div className="col col-lg-10 offset-lg-1">
             <div className="row">
               <div className="col col-lg-7">
-                <Search/>
+                <Search searchField={this.state.searchField}
+                        handleChangeSearch = {this.handleChangeSearch}
+                        handleClickSearch = {this.handleClickSearch}
+                />
               </div>
             </div>
             <Table
               posts = {this.state.posts}
               itemsPerPage = {this.state.itemsPerPage}
               pageNum = {this.state.pageNum}
-              tableIconId= {this.state.tableIconId}
-              tableIconTitle= {this.state.tableIconTitle}
-              tableIconBody= {this.state.tableIconBody}
+              tableIconId = {this.state.tableIconId}
+              tableIconTitle = {this.state.tableIconTitle}
+              tableIconBody = {this.state.tableIconBody}
               handleClickSort = {this.handleClickSort}
+              searchField = {this.state.searchField}
+              postFiltered = {this.state.postFiltered}
             />
             <Pagination
               urlParam = {this.state.urlParam}
               pageNum = {this.state.pageNum}
-              pageAll = {this.state.pageAll}
               handleClickPage = {this.handleClickPage}
+              posts = {this.state.posts}
+              postFiltered = {this.state.postFiltered}
+              itemsPerPage = {this.state.itemsPerPage}
+              searchField = {this.state.searchField}
             />
           </div>
         </div>

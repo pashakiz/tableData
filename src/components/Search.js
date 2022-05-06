@@ -3,13 +3,16 @@ import classNames from 'classnames';
 
 class Search extends React.Component {
 
+  //this.props.searchField
+
   render() {
+    console.log('searchField', this.props.searchField);
     return (
       <div className="search-bar">
         <form action="">
           <div className="search">
-            <input className='search__input' type="text" placeholder="Поиск" />
-            <div className="search__icon">
+            <input className='search__input' onChange={ (e) => this.props.handleChangeSearch(e) } type="text" placeholder="Поиск" />
+            <div className="search__icon" onClick={ (e) => this.props.handleClickSearch(e) }>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg>
