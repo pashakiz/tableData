@@ -6,7 +6,6 @@ class Search extends React.Component {
   //this.props.searchField
 
   render() {
-    console.log('searchField', this.props.searchField);
     return (
       <div className="search-bar">
         <form action="">

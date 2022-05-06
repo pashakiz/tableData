@@ -49,13 +49,11 @@ class App extends React.Component {
     } else {
       dataUnSorted = this.state.posts;
     }
-    console.log('dataUnSorted',dataUnSorted)
 
     if (event.target.classList.contains('down')) {
-      console.log('sort:down>up');
 
       if (column === 'id') {
-        dataSorted = dataUnSorted.sort( (a, b) => b.id - a.id );
+        dataSorted = dataUnSorted.sort( (a, b) => +b.id - +a.id );
         this.setState({
           tableIconId: 'up'
         })
@@ -89,10 +87,9 @@ class App extends React.Component {
     }
 
     if (event.target.classList.contains('up')) {
-      console.log('sort:up>down');
 
       if (column === 'id') {
-        dataSorted = dataUnSorted.sort( (a, b) => a.id - b.id );
+        dataSorted = dataUnSorted.sort( (a, b) => +a.id - +b.id );
         this.setState({
           tableIconId: 'down'
         })

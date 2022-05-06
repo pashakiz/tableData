@@ -13,10 +13,6 @@ class Pagination extends React.Component {
       pageAll = Math.ceil(this.props.posts.length / this.props.itemsPerPage);
     }
 
-    console.log('pageAll', pageAll);
-    console.log('this.props.postFiltered.length', this.props.postFiltered.length);
-    console.log('pageAll', pageAll);
-
     let pagePrevNum = (this.props.pageNum > 1) ? this.props.pageNum-1 : 1;
     let pageNextNum = (pageAll > this.props.pageNum) ? this.props.pageNum+1 : pageAll;
 
