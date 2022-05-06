@@ -12,7 +12,7 @@ class Pagination extends React.Component {
     let paginationPages = [];
     for (let i=1; i <= this.props.pageAll; i++) {
       paginationPages.push(
-        <button key={i} onClick={()=>this.props.handleClickPage(i)} className={classNames('pagination__page',
+        <button key={i} onClick={ () => this.props.handleClickPage(i) } className={classNames('pagination__page',
           {active: (i === this.props.pageNum)}
         )}>{i}</button>
       );
@@ -20,11 +20,11 @@ class Pagination extends React.Component {
 
     return (
       <div className="pagination">
-        <button onClick={()=>this.props.handleClickPage(pagePrevNum)} className="pagination__btn pagination__btn_prev">Назад</button>
+        <button onClick={ () => this.props.handleClickPage(pagePrevNum) } className="pagination__btn pagination__btn_prev">Назад</button>
         <div className="pagination__pages">
           {paginationPages}
         </div>
-        <button onClick={()=>this.props.handleClickPage(pageNextNum)} className="pagination__btn pagination__btn_next">Далее</button>
+        <button onClick={ () => this.props.handleClickPage(pageNextNum) } className="pagination__btn pagination__btn_next">Далее</button>
       </div>
     );
   }
