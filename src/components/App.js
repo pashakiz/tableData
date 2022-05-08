@@ -41,15 +41,15 @@ class App extends React.Component {
     );
   }
 
-  handleClickPage = (pageNum) => {
-    this.changePage(pageNum);
-  }
-
   changePage(pageNum) {
     window.location.hash = '#page' + pageNum;
     this.setState({
       pageNum: pageNum
     });
+  }
+
+  handleClickPage = (pageNum) => {
+    this.changePage(pageNum);
   }
 
   handleClickSort = (event, column) => {
@@ -144,6 +144,9 @@ class App extends React.Component {
 
     if (!searh.length)
       this.getData();
+
+    if (this.state.pageNum > 1)
+      this.changePage(1);
 
     this.setState({
       searchField: searh,
