@@ -141,7 +141,10 @@
   //&.pagination__btn_next {}
 }
 
-//.pagination__pages {}
+.pagination__pages {
+  margin: 0 auto;
+}
+
 .pagination__page {
   cursor: pointer;
   font-weight: 700;

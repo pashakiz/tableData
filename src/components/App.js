@@ -3,13 +3,14 @@ import classNames from 'classnames';
 import Search from './Search';
 import Table from './Table';
 import Pagination from './Pagination';
+import {config} from '../config';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      itemsPerPage: 10,
+      itemsPerPage: config.ITEMS_PER_PAGE,
       posts: [],
       dataIsLoaded: false,
       pageNum: window.location.hash ? +window.location.hash.split('#')[1].split('page')[1] : 1,
@@ -136,8 +137,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const url = 'https://jsonplaceholder.typicode.com/posts';
-    this.getData(url);
+    this.getData(config.API_URL);
   }
 
   render() {
