@@ -27,11 +27,15 @@ class Pagination extends React.Component {
 
     return (
       <div className="pagination">
-        <button onClick={ () => this.props.handleClickPage(pagePrevNum) } className="pagination__btn pagination__btn_prev">Назад</button>
+        <button onClick={ () => this.props.handleClickPage(pagePrevNum) } className={classNames('pagination__btn pagination__btn_prev',
+          {'d-none': (pageAll !== null)}
+        )}>Назад</button>
         <div className="pagination__pages">
           {paginationPages}
         </div>
-        <button onClick={ () => this.props.handleClickPage(pageNextNum) } className="pagination__btn pagination__btn_next">Далее</button>
+        <button onClick={ () => this.props.handleClickPage(pageNextNum) } className={classNames('pagination__btn pagination__btn_next',
+          {'d-none': (pageAll !== null)}
+        )}>Далее</button>
       </div>
     );
   }
