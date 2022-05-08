@@ -1,9 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 
 class Search extends React.Component {
-
-  //this.props.searchField
 
   render() {
     return (
@@ -21,6 +18,7 @@ class Search extends React.Component {
       </div>
     );
   }
+
 }
 
 export default Search;

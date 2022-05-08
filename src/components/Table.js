@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import TableBody from './TableBody';
 
 class Table extends React.Component {
@@ -66,11 +65,10 @@ class Table extends React.Component {
             </tr>
           </thead>
           <TableBody
-            posts={this.props.posts}
             itemsPerPage = {this.props.itemsPerPage}
             pageNum = {this.props.pageNum}
-            searchField = {this.props.searchField}
-            postFiltered = {this.props.postFiltered}
+            dataCurrent = {this.props.dataCurrent}
+            error = {this.props.error}
           />
         </table>
       </div>

@@ -6,18 +6,12 @@ class Pagination extends React.Component {
 
   render() {
 
-    let pageAll = null;
-    if (this.props.searchField !== '') {
-      pageAll = Math.ceil(this.props.postFiltered.length / this.props.itemsPerPage);
-    } else {
-      pageAll = Math.ceil(this.props.posts.length / this.props.itemsPerPage);
-    }
-
+    let pageAll = Math.ceil(this.props.dataCurrent.length / this.props.itemsPerPage);
     let pagePrevNum = (this.props.pageNum > 1) ? this.props.pageNum-1 : 1;
     let pageNextNum = (pageAll > this.props.pageNum) ? this.props.pageNum+1 : pageAll;
 
     let paginationPages = [];
-    for (let i=1; i <= pageAll; i++) {
+    for (let i = 1; i <= pageAll; i++) {
       paginationPages.push(
         <button key={i} onClick={ () => this.props.handleClickPage(i) } className={classNames('pagination__page',
           {active: (i === this.props.pageNum)}

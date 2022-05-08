@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import Search from './Search';
 import Table from './Table';
 import Pagination from './Pagination';
@@ -13,6 +12,7 @@ class App extends React.Component {
       itemsPerPage: config.ITEMS_PER_PAGE,
       posts: [],
       dataIsLoaded: false,
+      error: null,
       pageNum: window.location.hash ? +window.location.hash.split('#')[1].split('page')[1] : 1,
       tableIconId: 'down',
       tableIconTitle: 'down',
@@ -22,18 +22,30 @@ class App extends React.Component {
     };
   }
 
-  getData(url) {
-    fetch(url)
+  getData() {
+    fetch(config.API_URL)
     .then((res) => res.json())
-    .then((json) => {
-      this.setState({
-        dataIsLoaded: true,
-        posts: json,
-      });
-    });
+    .then(
+      (json) => {
+        this.setState({
+          dataIsLoaded: true,
+          posts: json,
+        });
+      },
+      (error) => {
+        this.setState({
+          dataIsLoaded: true,
+          error
+        });
+      }
+    );
   }
 
   handleClickPage = (pageNum) => {
+    this.changePage(pageNum);
+  }
+
+  changePage(pageNum) {
     window.location.hash = '#page' + pageNum;
     this.setState({
       pageNum: pageNum
@@ -41,6 +53,8 @@ class App extends React.Component {
   }
 
   handleClickSort = (event, column) => {
+
+    //this.getData();
 
     let dataSorted = [];
     let dataUnSorted = [];
@@ -128,6 +142,9 @@ class App extends React.Component {
   handleChangeSearch = (event) => {
     let searh = event.target.value.toLowerCase();
 
+    if (!searh.length)
+      this.getData();
+
     this.setState({
       searchField: searh,
       postFiltered: this.state.posts.filter(row => row.id.toString().includes(searh)
@@ -137,10 +154,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getData(config.API_URL);
+    this.getData();
   }
 
   render() {
+
+    let dataCurrent = !this.state.searchField.length ? this.state.posts : this.state.postFiltered;
+
     return (
       <div className="app-table">
         <div className="row">
@@ -153,24 +173,20 @@ class App extends React.Component {
               </div>
             </div>
             <Table
-              posts = {this.state.posts}
               itemsPerPage = {this.state.itemsPerPage}
               pageNum = {this.state.pageNum}
               tableIconId = {this.state.tableIconId}
               tableIconTitle = {this.state.tableIconTitle}
               tableIconBody = {this.state.tableIconBody}
               handleClickSort = {this.handleClickSort}
-              searchField = {this.state.searchField}
-              postFiltered = {this.state.postFiltered}
+              dataCurrent = {dataCurrent}
+              error = {this.state.error}
             />
             <Pagination
-              urlParam = {this.state.urlParam}
               pageNum = {this.state.pageNum}
               handleClickPage = {this.handleClickPage}
-              posts = {this.state.posts}
-              postFiltered = {this.state.postFiltered}
+              dataCurrent = {dataCurrent}
               itemsPerPage = {this.state.itemsPerPage}
-              searchField = {this.state.searchField}
             />
           </div>
         </div>

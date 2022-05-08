@@ -1,28 +1,29 @@
 import React from 'react';
-import classNames from 'classnames';
 
 class TableBody extends React.Component {
 
+  //this.props.dataIsLoaded
+  //this.props.error
+
   render() {
 
-    //this.props.searchField
-    //this.props.postFiltered
 
-    let data = [];
-    let items = [];
-    if (this.props.searchField !== '') {
-      data = this.props.postFiltered;
-    } else {
-      data = this.props.posts;
-    }
+    let errorMessage = 'По вашему запросу ничего не найдено :(';
 
-    if (data.length) {
+    if (this.props.error)
+      errorMessage = 'Ошибка: ' + this.props.error.message;
+
+    let rows = [];
+
+    if (this.props.dataCurrent.length) {
+
       let from = ((this.props.pageNum - 1) * this.props.itemsPerPage + 1) - 1;
       let to = (from + this.props.itemsPerPage);
+
       for (let i = from; i < to; i++) {
-        let current = data[i];
+        let current = this.props.dataCurrent[i];
         if (current) {
-          items.push(
+          rows.push(
             <tr key = {0 + current.userId + current.id}>
               <td>{current.id}</td>
               <td>{current.title}</td>
@@ -32,18 +33,16 @@ class TableBody extends React.Component {
         }
       }
     } else {
-      items = (
+      rows = (
         <tr key="0">
-          <td colSpan="3">По вашему запросу ничего не найдено :(</td>
+          <td colSpan="3">{errorMessage}</td>
         </tr>
       );
     }
 
-
-
     return (
       <tbody>
-        {items}
+        {rows}
       </tbody>
     );
   }
