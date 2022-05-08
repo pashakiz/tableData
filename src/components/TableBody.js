@@ -34,7 +34,7 @@ class TableBody extends React.Component {
     } else {
       items = (
         <tr key="0">
-          <td colspan="3">По вашему запросу ничего не найдено :(</td>
+          <td colSpan="3">По вашему запросу ничего не найдено :(</td>
         </tr>
       );
     }
